@@ -1,35 +1,24 @@
-package com.example.currencyconverter.fragments;
+package com.example.currencyconverter.fragments
 
-import static java.util.Objects.*;
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.currencyconverter.fragments.CalculatorFragment
+import com.example.currencyconverter.fragments.RatesFragment
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-
-import java.util.Objects;
-
-public class PagerAdapter extends FragmentStateAdapter {
-    private static int NUM_ITEMS = 2;
-
-    public PagerAdapter(@NonNull FragmentActivity fragmentActivity) {
-        super(fragmentActivity);
-    }
-
-
-    @NonNull
-    @Override
-    public Fragment createFragment(int position) {
-        switch (position) {
-            case 0:
-                return new CalculatorFragment();
-            default:
-                return new RatesFragment();
+class PagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+    override fun createFragment(position: Int): Fragment {
+        return when (position) {
+            0 -> CalculatorFragment()
+            else -> RatesFragment()
         }
     }
 
-    @Override
-    public int getItemCount() {
-        return NUM_ITEMS;
+    override fun getItemCount(): Int {
+        return NUM_ITEMS
+    }
+
+    companion object {
+        private const val NUM_ITEMS = 2
     }
 }

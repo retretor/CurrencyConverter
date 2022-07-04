@@ -1,53 +1,70 @@
-package com.example.currencyconverter.fragments;
+package com.example.currencyconverter.fragments
 
-import android.os.Bundle;
+import android.os.Bundle
+import android.util.Log
+import com.example.currencyconverter.fragments.CalculatorFragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.example.currencyconverter.CurrencyCost
+import com.example.currencyconverter.R
 
-import androidx.fragment.app.Fragment;
+class CalculatorFragment : Fragment() {
+    private var currency_1_value: EditText? = null
+    private var convert_button: Button? = null
+    private var currency_2_value: TextView? = null
+    private var choice_rates: Spinner? = null
+    private var choice_currency_1: Spinner? = null
+    private var choice_currency_2: Spinner? = null
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        currency_1_value = view?.findViewById(R.id.currency_1_value)
+        convert_button = view?.findViewById(R.id.convert_btn)
+        currency_2_value = view?.findViewById(R.id.currency_2_value)
 
-import com.example.currencyconverter.R;
+        choice_rates = view?.findViewById(R.id.choice_rates)
+        choice_currency_1 = view?.findViewById(R.id.currency_1)
+        choice_currency_2 = view?.findViewById(R.id.currency_2)
 
+        val currencyCost = CurrencyCost()
+        currencyCost.start()
 
-public class CalculatorFragment extends Fragment {
+        convert_button?.setOnClickListener {
+            val currency_1_value_string = currency_1_value?.text.toString()
+            val currency_1_string = choice_currency_1?.selectedItem.toString()
+            val currency_2_string = choice_currency_2?.selectedItem.toString()
+            var rates_string = choice_rates?.selectedItem.toString()
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+            val currency_2_value_double = currencyCost.calculateCurrency(currency_1_string, currency_2_string, currency_1_value_string).toDouble()
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public CalculatorFragment() {
-        // Required empty public constructor
-    }
-
-
-    public static CalculatorFragment newInstance(String param1, String param2) {
-        CalculatorFragment fragment = new CalculatorFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            currency_2_value?.text = currency_2_value.toString()
+            Log.d("Currency", currency_2_value_double.toString())
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_calculator, container, false);
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_calculator, container, false)
+    }
+
+    companion object {
+        private const val ARG_PARAM1 = "param1"
+        private const val ARG_PARAM2 = "param2"
+        fun newInstance(param1: String?, param2: String?): CalculatorFragment {
+            val fragment = CalculatorFragment()
+            val args = Bundle()
+            args.putString(ARG_PARAM1, param1)
+            args.putString(ARG_PARAM2, param2)
+            fragment.arguments = args
+            return fragment
+        }
     }
 }
