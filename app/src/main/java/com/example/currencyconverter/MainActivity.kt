@@ -43,10 +43,12 @@ class MainActivity : AppCompatActivity() {
                 0 -> {
                     tab.text = "Calculator"
                     tab.setIcon(R.drawable.ic_exchange)
+                    Log.d("TAG", "Calculator")
                 }
                 1 -> {
                     tab.text = "Rates"
                     tab.setIcon(R.drawable.ic_currency_list)
+                    Log.d("TAG", "Rates")
                 }
             }
         }

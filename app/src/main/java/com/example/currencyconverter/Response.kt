@@ -10,7 +10,6 @@ import java.net.URL
 import java.util.*
 
 class Response {
-
     //API response
     private val c = Calendar.getInstance()
     private val year = c.get(Calendar.YEAR)
@@ -50,6 +49,7 @@ class Response {
                 currency_value = currencys_values_nbu[i]
             }
         }
+        Log.d("Currency value", currency_value.toString())
         return currency_value
     }
 
@@ -83,7 +83,6 @@ class Response {
     }
 
 
-
     //Fill arrays with data
     @DelicateCoroutinesApi
     fun fillArrays() {
@@ -100,6 +99,7 @@ class Response {
             currencys_names_nbu.add(jsonObject.getString("txt"))
             currencys_values_nbu.add(jsonObject.getDouble("rate"))
             currencys_cc_nbu.add(jsonObject.getString("cc"))
+            Log.d("Currency_сс $i: ", currencys_cc_nbu[i])
         }
 
         var response2 = URL(url2).readText()
