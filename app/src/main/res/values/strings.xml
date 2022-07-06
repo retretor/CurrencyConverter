@@ -29,49 +29,79 @@
     <string name="enter_value_from">Enter value from:</string>
     <string name="select_bank">Select bank:</string>
 
+
     <string-array name="currency_codes">
-        <item>CAD</item>
-        <item>EUR</item>
-        <item>HKD</item>
-        <item>ISK</item>
-        <item>PHP</item>
-        <item>DKK</item>
-        <item>HUF</item>
-        <item>CZK</item>
-        <item>AUD</item>
-        <item>RON</item>
-        <item>SEK</item>
-        <item>IDR</item>
-        <item>INR</item>
-        <item>BRL</item>
-        <item>RUB</item>
-        <item>HRK</item>
-        <item>JPY</item>
-        <item>THB</item>
-        <item>CHF</item>
-        <item>SGD</item>
-        <item>PLN</item>
-        <item>BGN</item>
-        <item>CNY</item>
-        <item>NOK</item>
-        <item>NZD</item>
-        <item>ZAR</item>
-        <item>USD</item>
-        <item>MXN</item>
-        <item>ILS</item>
-        <item>GBP</item>
-        <item>KRW</item>
-        <item>MYR</item>
         <item>UAH</item>
+        <item>USD</item>
+        <item>EUR</item>
+        <item>CAD</item>
+        <item>CNY</item>
+        <item>HRK</item>
+        <item>CZK</item>
+        <item>DKK</item>
+        <item>HKD</item>
+        <item>HUF</item>
+        <item>INR</item>
+        <item>IDR</item>
+        <item>ILS</item>
+        <item>JPY</item>
+        <item>KZT</item>
+        <item>KRW</item>
+        <item>MXN</item>
+        <item>MDL</item>
+        <item>NZD</item>
+        <item>NOK</item>
+        <item>RUB</item>
+        <item>SGD</item>
+        <item>ZAR</item>
+        <item>SEK</item>
+        <item>CHF</item>
+        <item>EGP</item>
+        <item>GBP</item>
+        <item>BYN</item>
+        <item>AZN</item>
+        <item>RON</item>
+        <item>TRY</item>
+        <item>XDR</item>
+        <item>BGN</item>
+        <item>PLN</item>
+        <item>DZD</item>
+        <item>BDT</item>
+        <item>AMD</item>
+        <item>DOP</item>
+        <item>IRR</item>
+        <item>IQD</item>
+        <item>KGS</item>
+        <item>LBP</item>
+        <item>LYD</item>
+        <item>MYR</item>
+        <item>MAD</item>
+        <item>PKR</item>
+        <item>SAR</item>
+        <item>VND</item>
+        <item>THB</item>
+        <item>AED</item>
+        <item>TND</item>
+        <item>UZS</item>
+        <item>TWD</item>
+        <item>TMT</item>
+        <item>RSD</item>
+        <item>TJS</item>
+        <item>GEL</item>
+        <item>BRL</item>
+        <item>XAU</item>
+        <item>XAG</item>
+        <item>XPT</item>
+        <item>XPD</item>
     </string-array>
     <string-array name="currency_codes_privat">
         <item>UAH</item>
+        <item>USD</item>
+        <item>EUR</item>
+        <item>PLN</item>
         <item>CHF</item>
         <item>CZK</item>
-        <item>EUR</item>
         <item>GBP</item>
-        <item>PLN</item>
-        <item>USD</item>
     </string-array>
     <string-array name="bank_names">
         <item>NBU</item>

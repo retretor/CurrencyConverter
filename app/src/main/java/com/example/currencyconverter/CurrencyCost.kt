@@ -1,7 +1,9 @@
 package com.example.currencyconverter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 class CurrencyCost {
@@ -9,16 +11,23 @@ class CurrencyCost {
     private var switcher: Boolean = false
     @OptIn(DelicateCoroutinesApi::class)
     @SuppressLint("UnsafeOptInUsageWarning")
-    fun start() {
+    fun start(context: Context?): Boolean {
         if (switcher) {
-            return
+            return true
         }
         response = Response()
+        if(response.isOnline(context!!)) {
+            switcher = true
+        } else {
+            Toast.makeText(context, "No connection to the Internet", Toast.LENGTH_LONG).show()
+            return false
+        }
         response.fillArrays()
-        switcher = true
+        return true
     }
 
     fun calculateCurrency(currency1: String?, currency2: String?): Double {
+
         Log.d("CurrencyCost", "calculateCurrency")
 
         if (!isCurrencyNameInArray(currency2) && currency2 != "UAH") return 1.0

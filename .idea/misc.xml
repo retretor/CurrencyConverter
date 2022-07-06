@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/drawable-v24/button_background.xml" value="0.283" />
+        <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/drawable-v24/flag_bf.xml" value="0.329" />
+        <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/drawable-v24/flag_bj.xml" value="0.329" />
+        <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/drawable/flag_ca.xml" value="0.329" />
+        <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/drawable/flag_eu.xml" value="0.329" />
         <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/layout/activity_main.xml" value="0.32019927536231885" />
         <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/layout/fragment_blank.xml" value="0.32019927536231885" />
         <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/layout/fragment_calculator.xml" value="0.32019927536231885" />

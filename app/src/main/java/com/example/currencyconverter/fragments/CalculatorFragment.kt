@@ -2,6 +2,8 @@ package com.example.currencyconverter.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +14,9 @@ import com.example.currencyconverter.CurrencyCost
 import com.example.currencyconverter.R
 
 
-class CalculatorFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSelectedListener {
+class CalculatorFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSelectedListener{
     private var switcher: Boolean = false
+    private var switcher_spinner: Int = 0
 
     private var currency_1_value: EditText? = null
     private var currency_2_value: TextView? = null
@@ -32,7 +35,7 @@ class CalculatorFragment : Fragment(), View.OnClickListener, AdapterView.OnItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         currencyCost = CurrencyCost()
-        currencyCost?.start()
+        switcher = currencyCost?.start(context) != false
     }
 
     override fun onClick(p0: View?) {
@@ -53,13 +56,20 @@ class CalculatorFragment : Fragment(), View.OnClickListener, AdapterView.OnItemS
         choice_currency_2 = view?.findViewById(R.id.currency_2)
         bankInfo = view?.findViewById(R.id.bankInfo)
 
-
-        val currency_1_value_string = currency_1_value?.text.toString()
+        if(currency_1_value?.text.toString().isEmpty()){
+            currency_1_value?.setText("0")
+        }
+        if (!switcher) {
+            switcher = currencyCost?.start(context) != false
+            return
+        }
+        val cost: Double = getCostCurrency()
+        setCurrency2Value(cost)
+    }
+    private fun getCostCurrency(): Double {
         val currency_1_string = choice_currency_1?.selectedItem.toString()
         val currency_2_string = choice_currency_2?.selectedItem.toString()
         val rates_string = choice_rates?.selectedItem.toString()
-
-
         var cost: Double = 1.0
         if(rates_string == "NBU") {
             cost =
@@ -76,15 +86,18 @@ class CalculatorFragment : Fragment(), View.OnClickListener, AdapterView.OnItemS
         else {
             bankInfo?.text = "Course: " + String.format("%.2f", cost)
         }
-
-
+        return cost
+    }
+    private fun setCurrency2Value(cost: Double) {
+        val currency_1_value_string = currency_1_value?.text.toString()
         val currency_2_value_double = currency_1_value_string.toDouble() / cost
 
-        // set the value of currency_2_value_double to the TextView currency_2_value
-        currency_2_value?.text = String.format("%.2f", currency_2_value_double)
 
+        currency_2_value?.text = String.format("%.2f", currency_2_value_double)
         Log.d("Currency", currency_2_value_double.toString())
     }
+
+
     private fun swapCurrencies() {
         choice_currency_1 = view?.findViewById(R.id.currency_1)
         choice_currency_2 = view?.findViewById(R.id.currency_2)
@@ -128,7 +141,6 @@ class CalculatorFragment : Fragment(), View.OnClickListener, AdapterView.OnItemS
         //set the default size of text in the spinner
         choice_rates?.dropDownWidth = 400
 
-        choice_rates?.onItemSelectedListener = this
         choice_currency_1 = view.findViewById(R.id.currency_1)
         choice_currency_2 = view.findViewById(R.id.currency_2)
         val adapter_currency_1 = ArrayAdapter(
@@ -143,6 +155,10 @@ class CalculatorFragment : Fragment(), View.OnClickListener, AdapterView.OnItemS
         )
         choice_currency_1?.adapter = adapter_currency_1
         choice_currency_2?.adapter = adapter_currency_2
+
+        choice_rates?.onItemSelectedListener = this
+        choice_currency_1?.onItemSelectedListener = this
+        choice_currency_2?.onItemSelectedListener = this
 
         return view
     }
@@ -163,30 +179,40 @@ class CalculatorFragment : Fragment(), View.OnClickListener, AdapterView.OnItemS
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, id: Long) {
         //if the user selects in choice_rates nbu change the adapter of choice_currency_1 and choice_currency_2 to nbu_rates
         Log.d("Spinner", "Spinner selected")
-        if(choice_rates?.selectedItem.toString() == "NBU") {
-            choice_currency_1?.adapter = ArrayAdapter(
-                activity as Context,
-                android.R.layout.simple_spinner_item,
-                resources.getStringArray(R.array.currency_codes)
-            )
-            choice_currency_2?.adapter = ArrayAdapter(
-                activity as Context,
-                android.R.layout.simple_spinner_item,
-                resources.getStringArray(R.array.currency_codes)
-            )
-        } else {
-            choice_currency_1?.adapter = ArrayAdapter(
-                activity as Context,
-                android.R.layout.simple_spinner_item,
-                resources.getStringArray(R.array.currency_codes_privat)
-            )
-            choice_currency_2?.adapter = ArrayAdapter(
-                activity as Context,
-                android.R.layout.simple_spinner_item,
-                resources.getStringArray(R.array.currency_codes_privat)
-            )
+        if (p0?.id == R.id.choice_rates) {
+            if(choice_rates?.selectedItem.toString() == "NBU") {
+                choice_currency_1?.adapter = ArrayAdapter(
+                    activity as Context,
+                    android.R.layout.simple_spinner_item,
+                    resources.getStringArray(R.array.currency_codes)
+                )
+                choice_currency_2?.adapter = ArrayAdapter(
+                    activity as Context,
+                    android.R.layout.simple_spinner_item,
+                    resources.getStringArray(R.array.currency_codes)
+                )
+            } else {
+                choice_currency_1?.adapter = ArrayAdapter(
+                    activity as Context,
+                    android.R.layout.simple_spinner_item,
+                    resources.getStringArray(R.array.currency_codes_privat)
+                )
+                choice_currency_2?.adapter = ArrayAdapter(
+                    activity as Context,
+                    android.R.layout.simple_spinner_item,
+                    resources.getStringArray(R.array.currency_codes_privat)
+                )
+            }
+        }
+        else {
+            if (switcher_spinner == 4) {
+                convertCurrencies()
+            } else {
+                switcher_spinner++
+            }
         }
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {}
+
 }

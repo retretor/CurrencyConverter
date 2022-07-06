@@ -87,7 +87,25 @@ class Response {
     @DelicateCoroutinesApi
     fun fillArrays() {
         CoroutineScope(Dispatchers.IO).launch {
-            async { getResponses() }.await()
+            async { getResponses()
+                    getResponsesPrivat()}.await()
+        }
+    }
+
+    suspend fun getResponsesPrivat() {
+        var response = URL(url2).readText()
+        response = response.substring(response.indexOf("["), response.indexOf("]") + 1)
+        val jsonArray2 = JSONArray(response)
+
+        for (i in 1 until jsonArray2.length()) {
+            val jsonObject = jsonArray2.getJSONObject(i)
+            if(jsonObject.has("saleRate") && jsonObject.has("purchaseRate"))
+            {
+                currencys_names_priv.add(jsonObject.getString("currency"))
+                currencys_value_buy_priv.add(jsonObject.getDouble("purchaseRate"))
+                currencys_value_sale_priv.add(jsonObject.getDouble("saleRate"))
+                currencys_cc_priv.add(jsonObject.getString("currency"))
+            }
         }
     }
 
@@ -100,21 +118,6 @@ class Response {
             currencys_values_nbu.add(jsonObject.getDouble("rate"))
             currencys_cc_nbu.add(jsonObject.getString("cc"))
             Log.d("Currency_сс $i: ", currencys_cc_nbu[i])
-        }
-
-        var response2 = URL(url2).readText()
-        response2 = response2.substring(response2.indexOf("["), response2.indexOf("]") + 1)
-        val jsonArray2 = JSONArray(response2)
-
-        for (i in 1 until jsonArray2.length()) {
-            val jsonObject = jsonArray2.getJSONObject(i)
-            if(jsonObject.has("saleRate") && jsonObject.has("purchaseRate"))
-            {
-                currencys_names_priv.add(jsonObject.getString("currency"))
-                currencys_value_buy_priv.add(jsonObject.getDouble("purchaseRate"))
-                currencys_value_sale_priv.add(jsonObject.getDouble("saleRate"))
-                currencys_cc_priv.add(jsonObject.getString("currency"))
-            }
         }
     }
 
