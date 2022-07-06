@@ -28,6 +28,7 @@
     <string name="value_to">Value to:</string>
     <string name="enter_value_from">Enter value from:</string>
     <string name="select_bank">Select bank:</string>
+    <string name="flag">Flag</string>
 
 
     <string-array name="currency_codes">

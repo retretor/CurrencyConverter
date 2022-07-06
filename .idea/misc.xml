@@ -9,10 +9,11 @@
         <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/drawable/flag_ca.xml" value="0.329" />
         <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/drawable/flag_eu.xml" value="0.329" />
         <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/layout/activity_main.xml" value="0.32019927536231885" />
+        <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/layout/card_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/layout/fragment_blank.xml" value="0.32019927536231885" />
         <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/layout/fragment_calculator.xml" value="0.32019927536231885" />
         <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/layout/fragment_calculator2.xml" value="0.32019927536231885" />
-        <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/layout/fragment_rates.xml" value="0.32019927536231885" />
+        <entry key="..\:/AndroidCode/CurrencyConverter/app/src/main/res/layout/fragment_rates.xml" value="0.33" />
       </map>
     </option>
   </component>
