@@ -6,27 +6,17 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.example.currencyconverter.fragments.CalculatorFragment
 import com.example.currencyconverter.fragments.PagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
-    var currency_1_value: EditText? = null
-    var convert_button: Button? = null
-    var currency_2_value: TextView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        convert_button = findViewById(R.id.convert_btn)
-        currency_1_value = findViewById(R.id.currency_1_value)
-        currency_2_value = findViewById(R.id.currency_2_value)
-
-        val choice_rates = findViewById<Spinner>(R.id.choice_rates)
-        val choice_currency_1 = findViewById<Spinner>(R.id.currency_1)
-        val choice_currency_2 = findViewById<Spinner>(R.id.currency_2)
 
         Draw()
 

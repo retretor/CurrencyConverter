@@ -16,7 +16,7 @@
             android:layout_width="155dp"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="200dp"
             android:backgroundTint="@color/white"
             android:contentDescription="@string/uah"
             android:entries="@array/currency_codes"
@@ -30,7 +30,7 @@
             android:layout_width="155dp"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="180dp"
             android:backgroundTint="@color/white"
             android:contentDescription="@string/usd"
             android:entries="@array/currency_codes"
@@ -43,12 +43,12 @@
             android:id="@+id/convert_btn"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="500dp"
             android:text="@string/convert"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/inverse_button"
@@ -59,7 +59,7 @@
             android:backgroundTint="@color/mainColor3"
             android:contentDescription="@string/inverseButton"
             android:src="@android:drawable/stat_notify_sync"
-            app:layout_constraintBottom_toTopOf="@+id/currency_2"
+            app:layout_constraintBottom_toTopOf="@+id/value_to_choise"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/currency_1" />
 
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            android:text="(Курс за ед валюты)"
+            android:text="@string/course_0"
             android:textSize="18dp"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/currency_2_value"
@@ -81,13 +81,13 @@
             android:layout_width="155dp"
             android:layout_height="50dp"
             android:layout_marginStart="240dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="40dp"
             android:backgroundTint="@color/white"
             android:contentDescription="@string/nbu"
-
             android:entries="@array/bank_names"
             android:scrollbarStyle="outsideInset"
             android:scrollbars="vertical"
+            style="@style/SpinnerLook"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -110,13 +110,76 @@
             android:id="@+id/currency_2_value"
             android:layout_width="170dp"
             android:layout_height="50dp"
-            android:text="TextView"
+            android:text="@string/value_0_0"
             android:gravity="center"
             android:textSize="18sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/currency_2"
             app:layout_constraintEnd_toEndOf="@+id/currency_1_value"
             app:layout_constraintStart_toStartOf="@+id/currency_1_value"
             app:layout_constraintTop_toTopOf="@+id/currency_2" />
+
+        <TextView
+            android:id="@+id/value_from_choise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/currency_from"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/currency_1"
+            app:layout_constraintStart_toStartOf="@+id/currency_1" />
+
+        <TextView
+            android:id="@+id/value_to_choise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/currency_to"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/currency_2"
+            app:layout_constraintStart_toStartOf="@+id/currency_2" />
+
+        <TextView
+            android:id="@+id/value_from_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/enter_value_from"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/currency_1_value"
+            app:layout_constraintEnd_toEndOf="@+id/currency_1_value"
+            app:layout_constraintStart_toStartOf="@+id/currency_1_value" />
+
+        <TextView
+            android:id="@+id/value_to_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/value_to"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/currency_2_value"
+            app:layout_constraintEnd_toEndOf="@+id/currency_2_value"
+            app:layout_constraintStart_toStartOf="@+id/currency_2_value" />
+
+        <TextView
+            android:id="@+id/select_bank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_bank"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/choice_rates"
+            app:layout_constraintStart_toStartOf="@+id/value_from_choise"
+            app:layout_constraintTop_toTopOf="@+id/choice_rates" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

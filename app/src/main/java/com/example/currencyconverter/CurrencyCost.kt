@@ -22,6 +22,8 @@ class CurrencyCost {
         Log.d("CurrencyCost", "calculateCurrency")
 
         if (!isCurrencyNameInArray(currency2) && currency2 != "UAH") return 1.0
+        if (currency1 == currency2)
+            return 1.0
 
         return if (currency1 == "UAH") {
             val cost = response.getCurrencyValue(currency2!!)
@@ -46,6 +48,9 @@ class CurrencyCost {
         Log.d("CurrencyCost", "calculateCurrency")
 
         if (!isCurrencyNameInArrayPriv(currency2) && currency2 != "UAH") return 1.0
+
+        if (currency1 == currency2)
+            return 1.0
 
         return if (currency1 == "UAH") {
             val cost = response.getValueBuyPriv(currency2!!)
